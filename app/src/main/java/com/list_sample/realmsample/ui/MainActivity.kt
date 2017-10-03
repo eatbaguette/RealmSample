@@ -76,5 +76,7 @@ class MainActivity : AppCompatActivity() {
                     .findAll()
                     .deleteAllFromRealm()
         }
+
+        adapter.notifyDataSetChanged()
     }
 }

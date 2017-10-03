@@ -30,6 +30,7 @@ dependencies {
     testCompile 'junit:junit:4.12'
     apply plugin: 'realm-android'
     compile "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
+    compile 'com.android.support:recyclerview-v7:26.+'
 }
 repositories {
     mavenCentral()

@@ -28,7 +28,6 @@ class MainActivity : AppCompatActivity() {
         val realmConfig = RealmConfiguration.Builder(baseContext)
                 .deleteRealmIfMigrationNeeded()
                 .build()
-        Realm.deleteRealm(realmConfig)
         mRealm = Realm.getInstance(realmConfig)
 
         // Realmを読み込み

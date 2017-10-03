@@ -33,8 +33,6 @@ class MainActivity : AppCompatActivity() {
         // Realmを読み込み
         val dateList: RealmResults<CurrentTimeModel> = mRealm.where(CurrentTimeModel::class.java).findAll()
 
-        Log.d("Realm", "realm read is $dateList")
-
         // RecyclerViewのセットアップ
         recyclerView = findViewById(R.id.recycler_view) as RecyclerView
         adapter = RecyclerViewAdapter(dateList)
@@ -50,8 +48,6 @@ class MainActivity : AppCompatActivity() {
 
         val fabDeleteAllRecords = findViewById(R.id.fab_delete_all_records)
         fabDeleteAllRecords.setOnClickListener { deleteAllRecords() }
-
-
     }
 
     override fun onDestroy() {

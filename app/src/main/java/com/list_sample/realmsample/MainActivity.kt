@@ -37,10 +37,11 @@ class MainActivity : AppCompatActivity() {
         recyclerView.layoutManager = layoutManager
         recyclerView.itemAnimator = DefaultItemAnimator()
         recyclerView.adapter = adapter
+        recyclerView.addItemDecoration(DividerItemDecoration(this))
 
-
-        // Todo 後でクリックイベントに変更
-        writeRealm()
+        // ボタンのセットアップ
+        val fab = findViewById(R.id.fab)
+        fab.setOnClickListener { writeRealm() }
 
 
     }

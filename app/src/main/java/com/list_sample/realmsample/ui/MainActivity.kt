@@ -5,7 +5,6 @@ import android.os.Bundle
 import android.support.v7.widget.DefaultItemAnimator
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
-import android.util.Log
 import com.list_sample.realmsample.CurrentTimeModel
 import com.list_sample.realmsample.ui.view.DividerItemDecoration
 import com.list_sample.realmsample.R
@@ -17,8 +16,8 @@ import me.mattak.moment.Moment
 
 class MainActivity : AppCompatActivity() {
     lateinit var mRealm: Realm
-    lateinit var recyclerView: RecyclerView
-    lateinit var adapter: RecyclerViewAdapter
+    lateinit var mRecyclerView: RecyclerView
+    lateinit var mAdapter: RecyclerViewAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,13 +33,13 @@ class MainActivity : AppCompatActivity() {
         val dateList: RealmResults<CurrentTimeModel> = mRealm.where(CurrentTimeModel::class.java).findAll()
 
         // RecyclerViewのセットアップ
-        recyclerView = findViewById(R.id.recycler_view) as RecyclerView
-        adapter = RecyclerViewAdapter(dateList)
+        mRecyclerView = findViewById(R.id.recycler_view) as RecyclerView
+        mAdapter = RecyclerViewAdapter(dateList)
         val layoutManager = LinearLayoutManager(applicationContext)
-        recyclerView.layoutManager = layoutManager
-        recyclerView.itemAnimator = DefaultItemAnimator()
-        recyclerView.adapter = adapter
-        recyclerView.addItemDecoration(DividerItemDecoration(this))
+        mRecyclerView.layoutManager = layoutManager
+        mRecyclerView.itemAnimator = DefaultItemAnimator()
+        mRecyclerView.adapter = mAdapter
+        mRecyclerView.addItemDecoration(DividerItemDecoration(this))
 
         // ボタンのセットアップ
         val fabAddCurrentDateTime = findViewById(R.id.fab_add_current_date_time)
@@ -64,7 +63,7 @@ class MainActivity : AppCompatActivity() {
             mRealm.copyToRealm(currentDateTime)
         }
 
-        adapter.notifyDataSetChanged()
+        mAdapter.notifyDataSetChanged()
     }
 
     fun deleteAllRecords() {
@@ -74,6 +73,6 @@ class MainActivity : AppCompatActivity() {
                     .deleteAllFromRealm()
         }
 
-        adapter.notifyDataSetChanged()
+        mAdapter.notifyDataSetChanged()
     }
 }

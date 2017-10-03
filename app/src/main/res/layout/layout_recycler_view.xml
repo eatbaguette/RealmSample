@@ -4,15 +4,26 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.list_sample.realmsample.MainActivity">
+    tools:context="com.list_sample.realmsample.ui.MainActivity">
 
     <android.support.design.widget.FloatingActionButton
-        android:id="@+id/fab"
+        android:id="@+id/fab_add_current_date_time"
         android:layout_height="wrap_content"
         android:layout_width="wrap_content"
         android:layout_gravity="bottom|end"
         android:layout_margin="16dp"
-        android:src="@android:drawable/ic_menu_myplaces"
+        android:src="@android:drawable/ic_menu_add"
+        app:backgroundTint="@color/colorPrimary"
+        />
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fab_delete_all_records"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:layout_gravity="bottom|start"
+        android:layout_margin="16dp"
+        android:src="@android:drawable/ic_menu_delete"
+        app:backgroundTint="@color/colorPrimary"
         />
 
     <android.support.v7.widget.RecyclerView

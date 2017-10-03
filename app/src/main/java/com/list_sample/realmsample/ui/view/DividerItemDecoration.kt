@@ -1,4 +1,4 @@
-package com.list_sample.realmsample
+package com.list_sample.realmsample.ui.view
 
 import android.content.Context
 import android.graphics.Canvas

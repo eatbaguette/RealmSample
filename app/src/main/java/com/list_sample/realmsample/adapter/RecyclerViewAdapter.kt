@@ -1,12 +1,13 @@
-package com.list_sample.realmsample
+package com.list_sample.realmsample.adapter
 
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import com.list_sample.realmsample.CurrentTimeModel
+import com.list_sample.realmsample.R
 import io.realm.RealmResults
-import org.w3c.dom.Text
 
 /**
  * Created by monkey on 2017/10/03.

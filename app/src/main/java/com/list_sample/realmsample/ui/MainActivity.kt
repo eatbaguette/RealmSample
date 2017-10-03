@@ -1,4 +1,4 @@
-package com.list_sample.realmsample
+package com.list_sample.realmsample.ui
 
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
@@ -6,6 +6,10 @@ import android.support.v7.widget.DefaultItemAnimator
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.util.Log
+import com.list_sample.realmsample.CurrentTimeModel
+import com.list_sample.realmsample.ui.view.DividerItemDecoration
+import com.list_sample.realmsample.R
+import com.list_sample.realmsample.adapter.RecyclerViewAdapter
 import io.realm.Realm
 import io.realm.RealmConfiguration
 import io.realm.RealmResults
@@ -40,8 +44,11 @@ class MainActivity : AppCompatActivity() {
         recyclerView.addItemDecoration(DividerItemDecoration(this))
 
         // ボタンのセットアップ
-        val fab = findViewById(R.id.fab)
+        val fab = findViewById(R.id.fab_add_current_date_time)
         fab.setOnClickListener { writeRealm() }
+
+        val fabDeleteAllRecords = findViewById(R.id.fab_delete_all_records)
+        fabDeleteAllRecords.setOnClickListener { deleteAllRecords() }
 
 
     }
@@ -61,5 +68,13 @@ class MainActivity : AppCompatActivity() {
         }
 
         adapter.notifyDataSetChanged()
+    }
+
+    fun deleteAllRecords() {
+        mRealm.executeTransaction {
+            mRealm.where(CurrentTimeModel::class.java)
+                    .findAll()
+                    .deleteAllFromRealm()
+        }
     }
 }

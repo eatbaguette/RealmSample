@@ -11,7 +11,7 @@ import org.w3c.dom.Text
 /**
  * Created by monkey on 2017/10/03.
  */
-class RecyclerViewAdapter(private val dateList: RealmResults<Todo>): RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder>() {
+class RecyclerViewAdapter(private val dateList: RealmResults<CurrentTimeModel>): RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder>() {
 
     // ViewHolder
     inner class ViewHolder(view: View): RecyclerView.ViewHolder(view) {
@@ -28,7 +28,7 @@ class RecyclerViewAdapter(private val dateList: RealmResults<Todo>): RecyclerVie
 
     override fun onBindViewHolder(holder: ViewHolder?, position: Int) {
         val item = dateList[position]
-        holder?.dateText?.text = item.name
+        holder?.dateText?.text = item.currentTime
     }
 
     override fun getItemCount(): Int {

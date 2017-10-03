@@ -9,6 +9,7 @@ import android.util.Log
 import io.realm.Realm
 import io.realm.RealmConfiguration
 import io.realm.RealmResults
+import me.mattak.moment.Moment
 
 class MainActivity : AppCompatActivity() {
     lateinit var mRealm: Realm
@@ -27,10 +28,9 @@ class MainActivity : AppCompatActivity() {
         mRealm = realm
 
         // Realmを読み込み
-        val props: RealmResults<Todo> = mRealm.where(Todo::class.java).findAll()
-        val propsName = props.get(3).name
+        val props: RealmResults<CurrentTimeModel> = mRealm.where(CurrentTimeModel::class.java).findAll()
 
-        Log.d("Realm", "realm read is $propsName")
+        Log.d("Realm", "realm read is $props")
 
         // RecyclerViewのセットアップ
         recyclerView = findViewById(R.id.recycler_view) as RecyclerView
@@ -51,10 +51,10 @@ class MainActivity : AppCompatActivity() {
 
     fun writeRealm() {
         mRealm.executeTransaction {
-            val todoModel = mRealm.createObject(Todo::class.java)
-            todoModel.status = 0
-            todoModel.name = "takashi"
-            mRealm.copyToRealm(todoModel)
+            val currentTime = mRealm.createObject(CurrentTimeModel::class.java)
+            // LocalDateTime.now()がMIN_APIで使えないので、KotlinMomentを使用
+            currentTime.currentTime = Moment().toString()
+            mRealm.copyToRealm(currentTime)
         }
     }
 }

@@ -44,8 +44,8 @@ class MainActivity : AppCompatActivity() {
         recyclerView.addItemDecoration(DividerItemDecoration(this))
 
         // ボタンのセットアップ
-        val fab = findViewById(R.id.fab_add_current_date_time)
-        fab.setOnClickListener { writeRealm() }
+        val fabAddCurrentDateTime = findViewById(R.id.fab_add_current_date_time)
+        fabAddCurrentDateTime.setOnClickListener { addCurrentDateTime() }
 
         val fabDeleteAllRecords = findViewById(R.id.fab_delete_all_records)
         fabDeleteAllRecords.setOnClickListener { deleteAllRecords() }
@@ -59,12 +59,12 @@ class MainActivity : AppCompatActivity() {
         mRealm.close()
     }
 
-    fun writeRealm() {
+    fun addCurrentDateTime() {
         mRealm.executeTransaction {
-            val currentTime = mRealm.createObject(CurrentTimeModel::class.java)
+            val currentDateTime = mRealm.createObject(CurrentTimeModel::class.java)
             // LocalDateTime.now()がMIN_APIで使えないので、KotlinMomentを使用
-            currentTime.currentTime = Moment().toString()
-            mRealm.copyToRealm(currentTime)
+            currentDateTime.currentTime = Moment().toString()
+            mRealm.copyToRealm(currentDateTime)
         }
 
         adapter.notifyDataSetChanged()

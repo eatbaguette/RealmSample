@@ -29,8 +29,7 @@ class MainActivity : AppCompatActivity() {
                 .deleteRealmIfMigrationNeeded()
                 .build()
         Realm.deleteRealm(realmConfig)
-        val realm = Realm.getInstance(realmConfig)
-        mRealm = realm
+        mRealm = Realm.getInstance(realmConfig)
 
         // Realmを読み込み
         val dateList: RealmResults<CurrentTimeModel> = mRealm.where(CurrentTimeModel::class.java).findAll()

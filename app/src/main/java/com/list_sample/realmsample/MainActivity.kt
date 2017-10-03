@@ -21,24 +21,26 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.layout_recycler_view)
 
         // Realmのセットアップ
-
         val realmConfig = RealmConfiguration.Builder(baseContext).build()
         val realm = Realm.getInstance(realmConfig)
-
         mRealm = realm
 
         // Realmを読み込み
-        val props: RealmResults<CurrentTimeModel> = mRealm.where(CurrentTimeModel::class.java).findAll()
+        val dateList: RealmResults<CurrentTimeModel> = mRealm.where(CurrentTimeModel::class.java).findAll()
 
-        Log.d("Realm", "realm read is $props")
+        Log.d("Realm", "realm read is $dateList")
 
         // RecyclerViewのセットアップ
         recyclerView = findViewById(R.id.recycler_view) as RecyclerView
-        adapter = RecyclerViewAdapter(props)
+        adapter = RecyclerViewAdapter(dateList)
         val layoutManager = LinearLayoutManager(applicationContext)
         recyclerView.layoutManager = layoutManager
         recyclerView.itemAnimator = DefaultItemAnimator()
         recyclerView.adapter = adapter
+
+
+        // Todo 後でクリックイベントに変更
+        writeRealm()
 
 
     }
@@ -56,5 +58,7 @@ class MainActivity : AppCompatActivity() {
             currentTime.currentTime = Moment().toString()
             mRealm.copyToRealm(currentTime)
         }
+
+        adapter.notifyDataSetChanged()
     }
 }

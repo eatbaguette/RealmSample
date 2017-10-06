@@ -5,7 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import com.list_sample.realmsample.CurrentTimeModel
+import com.list_sample.realmsample.Model.CurrentTimeModel
 import com.list_sample.realmsample.R
 import io.realm.RealmResults
 

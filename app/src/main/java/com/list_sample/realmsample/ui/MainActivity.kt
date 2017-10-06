@@ -1,18 +1,20 @@
 package com.list_sample.realmsample.ui
 
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.DefaultItemAnimator
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
-import com.list_sample.realmsample.CurrentTimeModel
-import com.list_sample.realmsample.ui.view.DividerItemDecoration
+import android.util.Log
+import com.list_sample.realmsample.Model.CurrentTimeModel
 import com.list_sample.realmsample.R
 import com.list_sample.realmsample.adapter.RecyclerViewAdapter
+import com.list_sample.realmsample.ui.view.DividerItemDecoration
 import io.realm.Realm
 import io.realm.RealmConfiguration
 import io.realm.RealmResults
 import me.mattak.moment.Moment
+
 
 class MainActivity : AppCompatActivity() {
     lateinit var mRealm: Realm
@@ -28,7 +30,9 @@ class MainActivity : AppCompatActivity() {
         val realmConfig = RealmConfiguration.Builder()
                 .deleteRealmIfMigrationNeeded()
                 .build()
+        Realm.deleteRealm(realmConfig)
         mRealm = Realm.getInstance(realmConfig)
+        Log.d("hoge", mRealm.configuration.path)
 
         // Realmを読み込み
         val dateList: RealmResults<CurrentTimeModel> = mRealm.where(CurrentTimeModel::class.java).findAll()
@@ -48,6 +52,7 @@ class MainActivity : AppCompatActivity() {
 
         val fabDeleteAllRecords = findViewById(R.id.fab_delete_all_records)
         fabDeleteAllRecords.setOnClickListener { deleteAllRecords() }
+
     }
 
     override fun onDestroy() {

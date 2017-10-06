@@ -14,6 +14,7 @@
         android:layout_margin="16dp"
         android:src="@android:drawable/ic_menu_add"
         app:backgroundTint="@color/colorPrimary"
+        app:rippleColor="@color/colorAccent"
         />
 
     <android.support.design.widget.FloatingActionButton
@@ -24,6 +25,7 @@
         android:layout_margin="16dp"
         android:src="@android:drawable/ic_menu_delete"
         app:backgroundTint="@color/colorPrimary"
+        app:rippleColor="@color/colorAccent"
         />
 
     <android.support.v7.widget.RecyclerView

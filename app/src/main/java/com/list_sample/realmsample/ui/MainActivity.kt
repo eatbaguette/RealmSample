@@ -24,7 +24,8 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.layout_recycler_view)
 
         // Realmのセットアップ
-        val realmConfig = RealmConfiguration.Builder(baseContext)
+        Realm.init(this)
+        val realmConfig = RealmConfiguration.Builder()
                 .deleteRealmIfMigrationNeeded()
                 .build()
         mRealm = Realm.getInstance(realmConfig)
